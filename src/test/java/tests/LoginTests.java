@@ -2,6 +2,8 @@ package tests;
 
 import dto.User;
 import manager.AppManager;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.devtools.DevToolsException;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.BoardsPage;
@@ -11,8 +13,8 @@ import pages.LoginPage;
 public class LoginTests extends AppManager {
 
     @Test
-    public void loginPositiveTest(){
-        User user= User.builder()
+    public void loginPositiveTest() {
+        User user = User.builder()
                 .email("vita.cohen.test49@gmail.com")
                 .password("Password123456!")
                 .build();
@@ -22,15 +24,29 @@ public class LoginTests extends AppManager {
 
     }
 
-    @Test
-    public void loginNegativeTest(){
-        User user= User.builder()
+    @Test(expectedExceptions = TimeoutException.class)
+    public void loginNegativeTest() {
+        User user = User.builder()
                 .email("vita.cohen.test49@gmail.com")
                 .password("Password123456!")
                 .build();
         new HomePage(getDriver()).clickBtnLogin();
         new LoginPage(getDriver()).login(user);
-        Assert.assertFalse(new BoardsPage(getDriver()).validateUrl("bbboards"));
+        new BoardsPage(getDriver()).validateUrl("adsasb");
+
+
+    }
+
+    @Test
+    public void loginNegativeTest_Another() {
+        User user = User.builder()
+                .email("vita.cohen.test49@gmail.com")
+                .password("Password123456!")
+                .build();
+        new HomePage(getDriver()).clickBtnLogin();
+        new LoginPage(getDriver()).login(user);
+        Assert.assertFalse(new BoardsPage(getDriver()).validateUrlWOCreateException("hjhj"));
+
 
     }
 
