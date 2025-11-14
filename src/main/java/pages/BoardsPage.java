@@ -40,7 +40,9 @@ public class BoardsPage extends BasePage {
 
     public void createNewBoard(Board board) {
         //btnCreateNewBoard.click();
-        clickWait(btnCreateNewBoard);
+        pause(5);
+        btnCreateNewBoard.click();
+        clickWait(inputBoardTitle);
         inputBoardTitle.sendKeys(board.getBoardTitle());
     }
 
