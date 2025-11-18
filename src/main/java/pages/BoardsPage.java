@@ -32,6 +32,17 @@ public class BoardsPage extends BasePage {
     @FindBy(xpath = "//span[@class='VmbXKMJLSqfD0U']")
     WebElement popUpMessageDelete;
 
+    @FindBy(xpath = "//*[@data-testid='header-member-menu-avatar']")
+    WebElement btnAccount;
+
+    @FindBy(xpath = "//span[text()='Manage account']")
+    WebElement btnManageAccount;
+
+    public void openMyAccount(){
+        clickWait(btnAccount);
+        clickWait(btnManageAccount);
+    }
+
     public boolean validatePopUpMessage(String text){
         return validateTextInElement(popUpMessageDelete, text);
     }
