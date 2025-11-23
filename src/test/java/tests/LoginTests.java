@@ -12,7 +12,7 @@ import pages.LoginPage;
 
 public class LoginTests extends AppManager {
 
-    @Test
+    @Test(groups = "smoke")
     public void loginPositiveTest() {
         User user = User.builder()
                 .email("vita.cohen.test49@gmail.com")
@@ -37,7 +37,7 @@ public class LoginTests extends AppManager {
 
     }
 
-    @Test
+    @Test(groups = "smoke")
     public void loginNegativeTest_Another() {
         User user = User.builder()
                 .email("vita.cohen.test49@gmail.com")

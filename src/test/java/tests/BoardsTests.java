@@ -19,7 +19,7 @@ import java.util.Random;
 @Listeners(TestNGListener.class)
 public class BoardsTests extends AppManager {
 
-    @BeforeMethod
+    @BeforeMethod(alwaysRun = true)
     public void login() {
         User user = User.builder()
                 .email("vita.cohen.test49@gmail.com")
@@ -29,7 +29,7 @@ public class BoardsTests extends AppManager {
         new LoginPage(getDriver()).login(user);
     }
 
-    @Test
+    @Test(groups = "smoke")
     public void createNewBoardPositiveTest() {
         int i = new Random().nextInt(1000);
         Board board = Board.builder()
@@ -42,7 +42,7 @@ public class BoardsTests extends AppManager {
                 .validateBoardName(board.getBoardTitle()));
     }
 
-    @Test
+    @Test(groups = "smoke")
     public void createNewBoardNegativeTestEmptyBoardTitle() {
         Board board = Board.builder()
                 .boardTitle("")
